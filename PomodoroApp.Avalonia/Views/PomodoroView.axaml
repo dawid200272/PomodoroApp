@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PomodoroApp.Avalonia.Views.PomodoroView"
+			 
+			 xmlns:vm="clr-namespace:PomodoroApp.Avalonia.ViewModels"
+			 x:DataType="vm:PomodoroViewModel">
+
+	<Design.DataContext>
+		<vm:PomodoroViewModel />
+	</Design.DataContext>
+
+	<Grid RowDefinitions="2*, *, auto">
+
+		<Grid
+			Grid.Row="0"
+			RowDefinitions="auto, auto, auto"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center">
+			
+			<!-- Timer Display -->
+			<TextBlock
+				Grid.Row="0"
+				Text="{Binding TimeLeftDisplay}"
+				FontSize="48"
+				HorizontalAlignment="Center"/>
+
+			<!-- Current State Display -->
+			<TextBlock
+				Grid.Row="1"
+				Text="{Binding PomodoroStateDisplay, StringFormat='{}{0} Time'}"
+				FontSize="24"/>
+
+			<!-- Pomodoro Count Display -->
+			<TextBlock
+				Grid.Row="2"
+				Text="{Binding PomodoroCount, StringFormat='Pomodoro Count: {0}'}"
+				FontSize="18"
+				HorizontalAlignment="Center"/>
+			
+		</Grid>
+		
+		<!-- Buttons -->
+		<StackPanel
+			Grid.Row="1"
+			Orientation="Horizontal"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Spacing="20">
+			
+			<!-- Start Button -->
+			<Button
+				Content="Start"
+				Command="{Binding StartPomodoroTimerCommand}"/>
+
+			<!-- Stop Button -->
+			<Button
+				Content="Stop"
+				Command="{Binding StopPomodoroTimerCommand}"/>
+
+			<!-- Reset Button -->
+			<Button
+				Content="Reset"
+				Command="{Binding ResetPomodoroTimerCommand}"/>
+			
+		</StackPanel>
+		
+	</Grid>
+	
+</UserControl>
